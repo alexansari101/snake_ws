@@ -22,10 +22,7 @@
   <!-- <url type="website">http://wiki.ros.org/snake_monster</url> -->
 
 
-  <!-- Author tags are optional, mutiple are allowed, one per tag -->
-  <!-- Authors do not have to be maintianers, but could be -->
-  <!-- Example: -->
-  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
+  <author email="alex.r.ansari@gmail.com">Alex Ansari</author>
 
 
   <!-- The *_depend tags are used to specify dependencies -->
