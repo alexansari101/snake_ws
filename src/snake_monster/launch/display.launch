@@ -1,0 +1,11 @@
+<launch>
+  <rosparam command="load" file="$(find snake_monster)/config/modules.yaml" />
+  <arg name="model" default="$(find snake_monster)/urdf/my_snake_monster.xacro" />
+  <param name="robot_description" command="rosrun xacro xacro --inorder $(arg model)" />
+  <arg name="gui" default="true" />
+  <param name="use_gui" value="$(arg gui)"/>
+  <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" /> -->
+  <node name="joint_state_publisher" pkg="snake_monster" type="joint_state_publisher" output="screen" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find snake_monster)/urdf.rviz" required="true" />
+</launch>

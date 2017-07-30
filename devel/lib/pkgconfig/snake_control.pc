@@ -1,0 +1,8 @@
+prefix=/home/alex/Documents/CMU/projects/snake_ws_2/devel
+
+Name: snake_control
+Description: Description of snake_control
+Version: 0.0.1
+Cflags: -I/home/alex/Documents/CMU/projects/snake_ws_2/devel/include
+Libs: -L/home/alex/Documents/CMU/projects/snake_ws_2/devel/lib 
+Requires: message_runtime std_msgs trajectory_msgs

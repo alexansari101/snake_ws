@@ -1,0 +1,29 @@
+---
+# list of module names corresponding to each leg.
+#
+#                front
+#  L6_3 L6_2 L6_1 ### L1_1 L1_2 L1_3
+#  L5_3 L5_2 L5_2 ### L2_1 L2_2 L2_3
+#  L4_3 L4_2 L4_3 ### L3_1 L3_2 L3_3
+#                 back
+#
+module_map:
+  L1_1: SA014__MoJo
+  L1_2: SA013__MoJo
+  L1_3: SA023__MoJo
+  L2_1: SA037__MoJo
+  L2_2: SA049__MoJo
+  L2_3: SA030__MoJo
+  L3_1: SA036__MoJo
+  L3_2: SA046__MoJo
+  L3_3: SA038__MoJo
+  L4_1: SA022__MoJo
+  L4_2: SA050__MoJo
+  L4_3: SA031__MoJo
+  L5_1: SA002__MoJo
+  L5_2: SA003__MoJo
+  L5_3: SA048__MoJo
+  L6_1: SA043__MoJo
+  L6_2: SA005__MoJo
+  L6_3: SA001__MoJo
+...

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- NOTE: joint must match the name of the module -->
+  <xacro:macro name="leg" params="leg mod1 mod2 mod3">
+    <xacro:rotary_module joint="${mod1}" child="${mod2}"/>
+    <xacro:rotary_module joint="${mod2}" child="extender__${leg}"/>
+    <xacro:extension_module name="extender__${leg}" child="${mod3}" length="0.05" twist="${PI/2}"/>
+    <xacro:rotary_module joint="${mod3}" child="elbow__${leg}"/>
+    <xacro:elbow_module_snake_monster name="elbow__${leg}" child="foot__${leg}"
+      length1="0.0191" twist1="${PI}" length2="0.1206" twist2="${-PI/2}"/>
+
+    <!--TODO: check dimensions -->
+    <link name="foot__${leg}__INPUT_INTERFACE">
+      <visual>
+	<origin xyz="0 0 0" rpy="0 0 0" />
+	<geometry>
+          <sphere radius=".0254" />
+	</geometry>
+	<xacro:black_material/>
+      </visual>
+      <collision>
+	<origin xyz="0 0 0" rpy="0 0 0" />
+	<geometry>
+    	  <sphere radius=".0254" />
+	</geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+
+</robot>
+

@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ros_control plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/snake</robotNamespace>
+      <!-- <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType> -->
+    </plugin>
+  </gazebo>
+
+  <!-- TODO: fix colors; Gazebo groups modules so everything comes out red -->
+  <!-- <xacro:macro name="gazeboColor" params="leg mod1 mod2 mod3"> -->
+  <xacro:macro name="gazeboColor" params="mod">
+    <gazebo reference="${mod}__OUTPUT_BODY">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>
+      <material>Gazebo/Red</material>
+      <static>false</static>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${mod}__INPUT_INTERFACE">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>      
+      <material>Gazebo/Red</material>
+      <static>false</static>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${mod}__INPUT_INTERFACE__COLLAR">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>     
+      <material>Gazebo/Black</material>
+      <static>false</static>
+      <selfCollide>true</selfCollide>
+    </gazebo>        
+  </xacro:macro>
+
+  <xacro:macro name="modSensors" params="mod">
+    <!-- required for joint torque feedback -->
+    <!-- <gazebo reference="${mod}"> -->
+    <!--   <provideFeedback>true</provideFeedback> -->
+    <!-- </gazebo> -->
+
+    <!-- joint_torque_sensor plugin -->
+    <!-- <gazebo> -->
+    <!--   <plugin name="${mod}_ros_ft_sensor" filename="libgazebo_ros_ft_sensor.so"> -->
+    <!-- 	<robotNamespace>/snake</robotNamespace> -->
+    <!-- 	<updateRate>200.0</updateRate> -->
+    <!-- 	<gaussianNoise>0.025</gaussianNoise> -->
+    <!-- 	<topicName>sensors/${mod}/torque</topicName>  -->
+    <!-- 	<jointName>${mod}</jointName> -->
+    <!--   </plugin> -->
+    <!-- </gazebo> -->
+
+    <!-- imu sensor plugin -->
+    <!-- <gazebo> -->
+    <!--   <plugin name="${mod}_ros_imu_sensor" filename="libgazebo_ros_imu.so"> -->
+    <!-- 	<robotNamespace>/snake</robotNamespace> -->
+    <!-- 	<updateRate>200.0</updateRate> -->
+    <!-- 	<gaussianNoise>0.005</gaussianNoise> -->
+    <!-- 	<topicName>sensors/${mod}/imu</topicName> -->
+    <!-- 	<serviceName>sensors/${mod}/imu</serviceName> -->
+    <!-- 	<bodyName>${mod}__OUTPUT_BODY</bodyName> -->
+    <!-- 	<xyzOffset>0 0 0</xyzOffset> -->
+    <!-- 	<rpyOffset>0 0 0</rpyOffset> -->
+    <!--   </plugin> -->
+    <!-- </gazebo> -->
+  </xacro:macro>
+
+
+  <xacro:gazeboColor mod="${S_00}"/>
+  <xacro:gazeboColor mod="${S_01}"/>
+  <xacro:gazeboColor mod="${S_02}"/>
+  <xacro:gazeboColor mod="${S_03}"/>
+  <xacro:gazeboColor mod="${S_04}"/>
+  <xacro:gazeboColor mod="${S_05}"/>
+  <xacro:gazeboColor mod="${S_06}"/>
+  <xacro:gazeboColor mod="${S_07}"/>
+  <xacro:gazeboColor mod="${S_08}"/>
+  <xacro:gazeboColor mod="${S_09}"/>
+  <xacro:gazeboColor mod="${S_10}"/>
+  <xacro:gazeboColor mod="${S_11}"/>
+  <xacro:gazeboColor mod="${S_12}"/>
+  <xacro:gazeboColor mod="${S_13}"/>
+  <xacro:gazeboColor mod="${S_14}"/>
+  <xacro:gazeboColor mod="${S_15}"/>
+
+  <xacro:modSensors mod="${S_00}"/>
+  <xacro:modSensors mod="${S_01}"/>
+  <xacro:modSensors mod="${S_02}"/>
+  <xacro:modSensors mod="${S_03}"/>
+  <xacro:modSensors mod="${S_04}"/>
+  <xacro:modSensors mod="${S_05}"/>
+  <xacro:modSensors mod="${S_06}"/>
+  <xacro:modSensors mod="${S_07}"/>
+  <xacro:modSensors mod="${S_08}"/>
+  <xacro:modSensors mod="${S_09}"/>
+  <xacro:modSensors mod="${S_10}"/>
+  <xacro:modSensors mod="${S_11}"/>
+  <xacro:modSensors mod="${S_12}"/>
+  <xacro:modSensors mod="${S_13}"/>
+  <xacro:modSensors mod="${S_14}"/>
+  <xacro:modSensors mod="${S_15}"/>
+
+
+</robot>

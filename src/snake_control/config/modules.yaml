@@ -1,0 +1,29 @@
+---
+# list of module names corresponding to each leg.
+#
+#  front
+#  S_00
+#    .
+#    .
+#    .
+#  S_15
+#  back
+#
+module_map:
+  S_00: SA001__MoJo
+  S_01: SA002__MoJo
+  S_02: SA003__MoJo
+  S_03: SA004__MoJo
+  S_04: SA005__MoJo
+  S_05: SA006__MoJo
+  S_06: SA007__MoJo
+  S_07: SA008__MoJo
+  S_08: SA009__MoJo
+  S_09: SA010__MoJo
+  S_10: SA011__MoJo
+  S_11: SA012__MoJo
+  S_12: SA013__MoJo
+  S_13: SA014__MoJo
+  S_14: SA015__MoJo
+  S_15: SA016__MoJo
+...

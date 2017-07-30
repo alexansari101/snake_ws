@@ -1,0 +1,86 @@
+snake:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 100  
+
+  # Position Controllers ---------------------------------------
+  S_00_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA001__MoJo
+    pid: {p: 3.0, i: 0.0, d: 0.0}
+
+  S_01_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA002__MoJo
+    pid: {p: 3.0, i: 0.0, d: 0.0}
+
+  S_02_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA003__MoJo
+    pid: {p: 3.0, i: 0.0, d: 0.0}
+
+  S_03_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA004__MoJo
+    pid: {p: 3.0, i: 0.0, d: 0.0}
+
+  S_04_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA005__MoJo
+    pid: {p: 3.0, i: 0.0, d: 0.0}
+
+  S_05_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA006__MoJo
+    pid: {p: 3.0, i: 0.0, d: 0.0}
+
+  S_06_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA007__MoJo
+    pid: {p: 3.0, i: 0.0, d: 0.0}
+
+  S_07_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA008__MoJo
+    pid: {p: 3.0, i: 0.0, d: 0.0}
+
+  S_08_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA009__MoJo
+    pid: {p: 3.0, i: 0.0, d: 0.0}
+
+  S_09_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA010__MoJo
+    pid: {p: 3.0, i: 0.0, d: 0.0}
+
+  S_10_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA011__MoJo
+    pid: {p: 3.0, i: 0.0, d: 0.0}
+
+  S_11_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA012__MoJo
+    pid: {p: 3.0, i: 0.0, d: 0.0}
+
+  S_12_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA013__MoJo
+    pid: {p: 3.0, i: 0.0, d: 0.0}
+
+  S_13_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA014__MoJo
+    pid: {p: 3.0, i: 0.0, d: 0.0}
+
+  S_14_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA015__MoJo
+    pid: {p: 3.0, i: 0.0, d: 0.0}
+
+  S_15_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA016__MoJo
+    pid: {p: 3.0, i: 0.0, d: 0.0}

@@ -1,0 +1,25 @@
+
+  <!-- TODO: inertial for all links? e.g.:
+    <inertial>
+      <mass value="1.4047990875" />
+      <origin xyz="-0.000327 0.000908 0.058457"/>
+      <inertia ixx="0.003000703" ixy="0.000000864" ixz="-0.000011312" 
+        iyy="0.002974822" iyz="0.000036294" 
+        izz="0.001434739" />
+    </inertial>
+  -->
+  <!-- TODO: collision for all links? e.g.:
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://hebi/meshes/example_link_convex.stl"/>
+        OR
+        <cylinder length="0.6" radius="0.2" />
+      </geometry>
+    </collision>
+  -->
+  <!-- TODO:
+    constants for distance constants
+    constants for effort limits (vel + effort)
+  -->
+

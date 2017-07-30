@@ -1,0 +1,8 @@
+prefix=/home/alex/Documents/CMU/projects/snake_ws_2/devel
+
+Name: snake_monster_control
+Description: Description of snake_monster_control
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/alex/Documents/CMU/projects/snake_ws_2/devel/lib 
+Requires: 

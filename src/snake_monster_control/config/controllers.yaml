@@ -1,0 +1,186 @@
+snake_monster:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+
+  # Position Controllers ---------------------------------------
+  L1_1_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA014__MoJo
+    pid: {p: 20.0, i: 0.0, d: 1.0}
+
+  L1_2_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA013__MoJo
+    pid: {p: 20.0, i: 0.0, d: 1.0}
+
+  L1_3_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA023__MoJo
+    pid: {p: 20.0, i: 0.0, d: 0.0}
+
+  L2_1_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA037__MoJo
+    pid: {p: 20.0, i: 0.0, d: 1.0}
+
+  L2_2_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA049__MoJo
+    pid: {p: 20.0, i: 0.0, d: 1.0}
+
+  L2_3_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA030__MoJo
+    pid: {p: 20.0, i: 0.0, d: 0.0}
+
+  L3_1_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA036__MoJo
+    pid: {p: 20.0, i: 0.0, d: 1.0}
+
+  L3_2_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA046__MoJo
+    pid: {p: 20.0, i: 0.0, d: 1.0}
+
+  L3_3_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA038__MoJo
+    pid: {p: 20.0, i: 0.0, d: 0.0}
+
+  L4_1_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA022__MoJo
+    pid: {p: 20.0, i: 0.0, d: 1.0}
+
+  L4_2_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA050__MoJo
+    pid: {p: 20.0, i: 0.0, d: 1.0}
+
+  L4_3_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA031__MoJo
+    pid: {p: 20.0, i: 0.0, d: 0.0}
+
+  L5_1_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA002__MoJo
+    pid: {p: 20.0, i: 0.0, d: 1.0}
+
+  L5_2_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA003__MoJo
+    pid: {p: 20.0, i: 0.0, d: 1.0}
+
+  L5_3_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA048__MoJo
+    pid: {p: 20.0, i: 0.0, d: 0.0}
+
+  L6_1_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA043__MoJo
+    pid: {p: 20.0, i: 0.0, d: 1.0}
+
+  L6_2_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA005__MoJo
+    pid: {p: 20.0, i: 0.0, d: 1.0}
+
+  L6_3_eff_pos_controller:
+    type: effort_controllers/JointPositionController
+    joint: SA001__MoJo
+    pid: {p: 20.0, i: 0.0, d: 0.0}
+
+  # L1_1_pos_pos_controller:
+  #   type: position_controllers/JointPositionController
+  #   joint: SA014__MoJo
+  #   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # L1_2_pos_pos_controller:
+  #   type: position_controllers/JointPositionController
+  #   joint: SA013__MoJo
+  #   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # L1_3_pos_pos_controller:
+  #   type: position_controllers/JointPositionController
+  #   joint: SA023__MoJo
+  #   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # L2_1_pos_pos_controller:
+  #   type: position_controllers/JointPositionController
+  #   joint: SA037__MoJo
+  #   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # L2_2_pos_pos_controller:
+  #   type: position_controllers/JointPositionController
+  #   joint: SA049__MoJo
+  #   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # L2_3_pos_pos_controller:
+  #   type: position_controllers/JointPositionController
+  #   joint: SA030__MoJo
+  #   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # L3_1_pos_pos_controller:
+  #   type: position_controllers/JointPositionController
+  #   joint: SA036__MoJo
+  #   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # L3_2_pos_pos_controller:
+  #   type: position_controllers/JointPositionController
+  #   joint: SA046__MoJo
+  #   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # L3_3_pos_pos_controller:
+  #   type: position_controllers/JointPositionController
+  #   joint: SA038__MoJo
+  #   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # L4_1_pos_pos_controller:
+  #   type: position_controllers/JointPositionController
+  #   joint: SA022__MoJo
+  #   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # L4_2_pos_pos_controller:
+  #   type: position_controllers/JointPositionController
+  #   joint: SA050__MoJo
+  #   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # L4_3_pos_pos_controller:
+  #   type: position_controllers/JointPositionController
+  #   joint: SA031__MoJo
+  #   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # L5_1_pos_pos_controller:
+  #   type: position_controllers/JointPositionController
+  #   joint: SA002__MoJo
+  #   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # L5_2_pos_pos_controller:
+  #   type: position_controllers/JointPositionController
+  #   joint: SA003__MoJo
+  #   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # L5_3_pos_pos_controller:
+  #   type: position_controllers/JointPositionController
+  #   joint: SA048__MoJo
+  #   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # L6_1_pos_pos_controller:
+  #   type: position_controllers/JointPositionController
+  #   joint: SA043__MoJo
+  #   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # L6_2_pos_pos_controller:
+  #   type: position_controllers/JointPositionController
+  #   joint: SA005__MoJo
+  #   pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # L6_3_pos_pos_controller:
+  #   type: position_controllers/JointPositionController
+  #   joint: SA001__MoJo
+  #   pid: {p: 100.0, i: 0.01, d: 10.0}

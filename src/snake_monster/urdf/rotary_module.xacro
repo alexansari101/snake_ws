@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="mass_2" value=".103" />
+  <xacro:property name="cyl_r" value=".026" />
+  <xacro:property name="cyl_h" value=".033" />
+
+  <xacro:macro name="rotary_module_in" params="name">
+    <link name="${name}">
+      <visual>
+	<origin xyz="0 0 0.035" rpy="1.57075 0 0" />
+        <geometry>
+          <mesh filename="package://snake_monster/meshes/rotary_input.stl"/>
+        </geometry>
+        <xacro:red_material/>
+      </visual>
+    <collision>
+      <origin xyz="0 0 ${0.0366/2.0}" rpy="0 0 0" />
+      <geometry>
+	<cylinder radius="${cyl_r}" length="${cyl_h}" />
+      </geometry>
+    </collision> 
+    <inertial>
+      <origin xyz="0 0 0.0366" rpy="0 0 0" />
+      <mass value="${mass_2}"/>
+      <inertia ixx="${mass_2/12.0*(3*cyl_r**2+cyl_h**2)+mass_2*(cyl_h/2.0)**2}" iyy="${mass_2/12.0*(3*cyl_r**2+cyl_h**2)+mass_2*(cyl_h/2.0)**2}" izz="${mass_2/2.0*cyl_r**2}" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    </link>
+  </xacro:macro>
+
+  <xacro:macro name="rotary_module_joint" params="parent name child">
+
+    <joint name="${name}" type="revolute">
+      <parent link="${parent}"/>
+      <child link="${child}"/>
+      <origin xyz="0 0 0.0366" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+      <dynamics damping=".1" friction="0.2"/>
+      <limit effort="7.0" lower="-1.57" upper="1.57" velocity="2.208932"/>
+    </joint>
+
+    <transmission name="${name}_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${name}">
+	<hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${name}_motor">
+	<hardwareInterface>EffortJointInterface</hardwareInterface>
+	<mechanicalReduction>300</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+  </xacro:macro>
+
+  <xacro:macro name="rotary_module_out" params="name">
+    <link name="${name}">
+      <visual>
+        <origin xyz="0 0 0" rpy="1.57075 0 0" />
+        <geometry>
+          <mesh filename="package://snake_monster/meshes/rotary_output.stl"/>
+	  <!-- <cylinder radius=".0025" length=".1" /> -->
+        </geometry>
+        <xacro:red_material/>
+      </visual>
+    <collision>
+      <origin xyz="0 0 ${0.0366/2.0}" rpy="0 0 0" />
+      <geometry>
+	<cylinder radius="${cyl_r}" length="${cyl_h}" />
+      </geometry>
+    </collision> 
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="${mass_2}"/>
+      <inertia ixx="${mass_2/12.0*(3*cyl_r**2+cyl_h**2)+mass_2*(cyl_h/2.0)**2}" iyy="${mass_2/12.0*(3*cyl_r**2+cyl_h**2)+mass_2*(cyl_h/2.0)**2}" izz="${mass_2/2.0*cyl_r**2}" ixy="0" ixz="0" iyz="0" />
+    </inertial>
+    </link>
+  </xacro:macro>
+
+  <xacro:macro name="rotary_module_out_interface" params="parent name child">
+    <joint name="${name}" type="fixed">
+      <parent link="${parent}"/>
+      <child link="${child}"/>
+      <origin xyz="0 0 0.0273" rpy="0 0 -1.57075"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- NOTE: joint must match the name of the module -->
+  <xacro:macro name="rotary_module" params="joint child">
+    <!-- first half of joint + collar -->
+    <xacro:rotary_module_in name="${joint}__INPUT_INTERFACE"/>
+    <xacro:collar parent="${joint}__INPUT_INTERFACE"/>
+    <!-- actual rotary joint component: -->
+    <xacro:rotary_module_joint parent="${joint}__INPUT_INTERFACE" name="${joint}" child="${joint}__OUTPUT_BODY"/>
+    <!-- second half of joint -->
+    <xacro:rotary_module_out name="${joint}__OUTPUT_BODY"/>
+    <!-- 90* turn at interface: -->
+    <xacro:rotary_module_out_interface parent="${joint}__OUTPUT_BODY" name="${joint}__OUTPUT_INTERFACE" child="${child}__INPUT_INTERFACE"/>
+  </xacro:macro>
+</robot>

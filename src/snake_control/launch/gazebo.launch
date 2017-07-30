@@ -1,0 +1,76 @@
+<launch>
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="paused" default="true"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="physics" default="ode"/>
+
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="physics" value="$(arg physics)"/>
+  </include>
+
+  
+  <rosparam command="load" file="$(find snake_control)/config/modules.yaml" />
+  <arg name="model" default="$(find snake_control)/urdf/snake.xacro" />
+  <param name="robot_description" command="rosrun xacro xacro --inorder $(arg model)" />
+
+  <!-- push robot_description to factory and spawn robot in gazebo -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+        args="-z 0.03 -urdf -model robot -param robot_description" respawn="false" output="screen" />
+
+
+  <arg name="camera" default="false" />
+  <group if="$(arg camera)">
+    <!-- spawn camera in gazebo -->
+    <node name="sdf_spawner" pkg="gazebo_ros" type="spawn_model"
+          args="-x 3.61 -y -5.11 -z 1.2 -R 0.045 -P .18 -Y 2.21 -file /home/alex/.gazebo/models/camera/model.sdf -sdf -model camera" respawn="false" output="screen" />
+  </group>
+
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find snake_control)/config/controllers.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/snake" args="joint_state_controller S_00_eff_pos_controller S_01_eff_pos_controller S_02_eff_pos_controller S_03_eff_pos_controller S_04_eff_pos_controller S_05_eff_pos_controller S_06_eff_pos_controller S_07_eff_pos_controller S_08_eff_pos_controller S_09_eff_pos_controller S_10_eff_pos_controller S_11_eff_pos_controller S_12_eff_pos_controller S_13_eff_pos_controller S_14_eff_pos_controller S_15_eff_pos_controller"/>
+
+  <!-- convert joint states to TF transforms for rviz -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+    <remap from="/joint_states" to="/snake/joint_states" />
+  </node>
+
+  <!-- call with gait:=true to start walking controller node with gazebo -->
+  <arg name="gait" default="true" />
+  <group if="$(arg gait)">
+    <node name="snake_controller" pkg="snake_control" type="gaits.py" />
+  </group>
+
+  <!-- call with jnt_srvr:=true to start joint state server node with gazebo -->
+  <arg name="jnt_srvr" default="false" />
+  <group if="$(arg jnt_srvr)">
+    <node name="jnt_srvr" pkg="snake_control" type="joint_state_srvr.py" />
+  </group>
+
+  <!-- call with traj_srvr:=true to start joint state server node with gazebo -->
+  <arg name="traj_srvr" default="false" />
+  <group if="$(arg traj_srvr)">
+    <node name="traj_srvr" pkg="snake_control" type="joint_state_buffer.py" />
+  </group>
+
+
+  <!-- call with joint_cmd_srvr:=true to start joint command server node with gazebo -->
+  <arg name="joint_cmd_srvr" default="false" />
+  <group if="$(arg joint_cmd_srvr)">
+    <node name="joint_cmd_srvr" pkg="snake_control" type="joint_cmd_srvr.py" />
+  </group>
+
+  
+
+</launch>

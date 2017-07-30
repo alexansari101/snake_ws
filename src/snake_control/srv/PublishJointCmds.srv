@@ -1,0 +1,7 @@
+uint32 rate        # the desired rate (Hz) for publication of joint commands
+duration T         # the duration to send at the specified rate
+float32[] params   # a list of joint command parameters
+bool reset         # wheter or not to reset the state after finishing
+---
+Header header      # store the time just after publishing the last command
+bool success       # indicate if the service call was successful

@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ros_control plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/snake_monster</robotNamespace>
+      <!-- <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType> -->
+    </plugin>
+  </gazebo>
+
+  <!-- TODO: fix colors; Gazebo groups modules so everything comes out red -->
+  <xacro:macro name="gazeboColor" params="leg mod1 mod2 mod3">
+    <gazebo reference="${mod1}__OUTPUT_BODY">
+      <material>Gazebo/Red</material>
+      <static>false</static>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${mod1}__INPUT_INTERFACE">
+      <material>Gazebo/Red</material>
+      <static>false</static>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${mod2}__OUTPUT_BODY">
+      <material>Gazebo/Red</material>
+      <static>false</static>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${mod2}__INPUT_INTERFACE">
+      <material>Gazebo/Red</material>
+      <static>false</static>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${mod3}__OUTPUT_BODY">
+      <material>Gazebo/Red</material>
+      <static>false</static>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${mod3}__INPUT_INTERFACE">
+      <material>Gazebo/Red</material>
+      <static>false</static>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${mod3}__INPUT_INTERFACE__COLLAR">
+      <material>Gazebo/Black</material>
+      <static>false</static>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="elbow__${leg}__INPUT_INTERFACE">
+      <material>Gazebo/Silver</material>
+      <static>false</static>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="elbow__${leg}__INPUT_INTERFACE__COLLAR">
+      <material>Gazebo/Black</material>
+      <static>false</static>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="elbow__${leg}__AFTER_CORNER_BODY">
+      <material>Gazebo/Silver</material>
+      <static>false</static>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="extender__${leg}__INPUT_INTERFACE">
+      <material>Gazebo/Silver</material>
+      <static>false</static>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="extender__${leg}__INPUT_INTERFACE__COLLAR">
+      <material>Gazebo/Black</material>
+      <static>false</static>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="foot__${leg}__INPUT_INTERFACE">
+      <mu1>0.9</mu1>
+      <mu2>0.9</mu2>
+      <material>Gazebo/Black</material>
+      <static>false</static>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="modSensors" params="mod">
+    <gazebo reference="${mod}">
+      <!-- required for joint torque feedback -->
+      <provideFeedback>true</provideFeedback>
+    </gazebo>
+
+    <!-- joint_torque_sensor plugin -->
+    <gazebo>
+      <plugin name="${mod}_ros_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+	<robotNamespace>/snake_monster</robotNamespace>
+	<updateRate>200.0</updateRate>
+	<gaussianNoise>0.025</gaussianNoise>
+	<topicName>sensors/${mod}/torque</topicName> 
+	<jointName>${mod}</jointName>
+      </plugin>
+    </gazebo>
+
+    <!-- imu sensor plugin -->
+    <!-- <gazebo> -->
+    <!--   <plugin name="${mod}_ros_imu_sensor" filename="libgazebo_ros_imu.so"> -->
+    <!-- 	<robotNamespace>/snake_monster</robotNamespace> -->
+    <!-- 	<updateRate>200.0</updateRate> -->
+    <!-- 	<gaussianNoise>0.005</gaussianNoise> -->
+    <!-- 	<topicName>sensors/${mod}/imu</topicName> -->
+    <!-- 	<serviceName>sensors/${mod}/imu</serviceName> -->
+    <!-- 	<bodyName>${mod}__OUTPUT_BODY</bodyName> -->
+    <!-- 	<xyzOffset>0 0 0</xyzOffset> -->
+    <!-- 	<rpyOffset>0 0 0</rpyOffset> -->
+    <!--   </plugin> -->
+    <!-- </gazebo> -->
+  </xacro:macro>
+
+    <!-- Gazebo 5 contact sensor element isn't working -->
+    <!-- <gazebo reference="foot__leg1__INPUT_INTERFACE"> -->
+    <!--   <sensor name="leg1_contact_sensor" type="contact"> -->
+    <!-- 	<always_on>true</always_on> -->
+    <!-- 	<update_rate>50</update_rate> -->
+    <!-- 	<contact> -->
+    <!-- 	  <collision>leg1_foot_collision</collision> -->
+    <!-- 	</contact> -->
+    <!-- 	<plugin name="leg1_ros_bumper_contacts" filename="libgazebo_ros_bumper.so"> -->
+    <!-- 	  <robotNamespace>/snake_monster</robotNamespace> -->
+    <!-- 	  <bumperTopicName>sensors/leg1_bumper</bumperTopicName> -->
+    <!-- 	  <frameName>world</frameName> -->
+    <!-- 	</plugin> -->
+    <!--   </sensor> -->
+    <!-- </gazebo> -->
+
+  <gazebo reference="base">
+    <material>Gazebo/Silver</material>
+  </gazebo>
+  <xacro:gazeboColor leg="leg1" mod1="${L1_1}" mod2="${L1_2}" mod3="${L1_3}"/>
+  <xacro:gazeboColor leg="leg2" mod1="${L2_1}" mod2="${L2_2}" mod3="${L2_3}"/>
+  <xacro:gazeboColor leg="leg3" mod1="${L3_1}" mod2="${L3_2}" mod3="${L3_3}"/>
+  <xacro:gazeboColor leg="leg4" mod1="${L4_1}" mod2="${L4_2}" mod3="${L4_3}"/>
+  <xacro:gazeboColor leg="leg5" mod1="${L5_1}" mod2="${L5_2}" mod3="${L5_3}"/>
+  <xacro:gazeboColor leg="leg6" mod1="${L6_1}" mod2="${L6_2}" mod3="${L6_3}"/>
+
+  <xacro:modSensors mod="${L1_1}"/>
+  <xacro:modSensors mod="${L1_2}"/>
+  <xacro:modSensors mod="${L1_3}"/>
+  <xacro:modSensors mod="${L2_1}"/>
+  <xacro:modSensors mod="${L2_2}"/>
+  <xacro:modSensors mod="${L2_3}"/>
+  <xacro:modSensors mod="${L3_1}"/>
+  <xacro:modSensors mod="${L3_2}"/>
+  <xacro:modSensors mod="${L3_3}"/>
+  <xacro:modSensors mod="${L4_1}"/>
+  <xacro:modSensors mod="${L4_2}"/>
+  <xacro:modSensors mod="${L4_3}"/>
+  <xacro:modSensors mod="${L5_1}"/>
+  <xacro:modSensors mod="${L5_2}"/>
+  <xacro:modSensors mod="${L5_3}"/>
+  <xacro:modSensors mod="${L6_1}"/>
+  <xacro:modSensors mod="${L6_2}"/>
+  <xacro:modSensors mod="${L6_3}"/>
+
+</robot>

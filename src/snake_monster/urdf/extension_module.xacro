@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="extension_module" params="name child length twist">
+
+    <link name="${name}__INPUT_INTERFACE">
+      <visual>
+        <origin xyz="0 0 ${length/2}" rpy="0 0 0" />
+        <geometry>
+          <cylinder length="${length}" radius=".0254" />
+        </geometry>
+        <xacro:silver_material/>
+      </visual>
+      <collision>
+	<origin xyz="0 0 ${length/2}" rpy="0 0 0" />
+	<geometry>
+	  <cylinder length="${length}" radius=".0254" />
+	</geometry>
+      </collision> 
+      <inertial>
+	<origin xyz="0 0 ${length/2}" rpy="0 0 0" />
+	<mass value=".05"/>
+	<inertia ixx="${.05/12.0*(3*(.0254**2+(.9*.0254)**2)+length**2)}" iyy="${.05/12.0*(3*(.0254**2+(.9*.0254)**2)+length**2)}" izz="${.05/2.0*(.0254**2+(.9*.0254)**2)}" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+    </link>
+
+    <joint name="${name}__OUTPUT_INTERFACE" type="fixed">
+      <parent link="${name}__INPUT_INTERFACE"/>
+      <child link="${child}__INPUT_INTERFACE"/>
+      <origin xyz="0 0 ${length}" rpy="0 0 ${twist}"/>
+    </joint>
+    <xacro:collar parent="${name}__INPUT_INTERFACE"/>
+  </xacro:macro>
+</robot>

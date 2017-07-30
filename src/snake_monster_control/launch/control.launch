@@ -1,0 +1,30 @@
+<launch>
+
+  <node name="snake_monster_iface" pkg="snake_monster_control" type="snake_monster_iface" respawn="false" output="screen" ns="/snake_monster" />
+	
+  <!-- load module names -->
+  <rosparam file="$(find snake_monster)/config/modules.yaml" command="load"/>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find snake_monster_control)/config/controllers.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/snake_monster" args="joint_state_controller L1_1_eff_pos_controller L1_2_eff_pos_controller L1_3_eff_pos_controller L2_1_eff_pos_controller L2_2_eff_pos_controller L2_3_eff_pos_controller L3_1_eff_pos_controller L3_2_eff_pos_controller L3_3_eff_pos_controller L4_1_eff_pos_controller L4_2_eff_pos_controller L4_3_eff_pos_controller L5_1_eff_pos_controller L5_2_eff_pos_controller L5_3_eff_pos_controller L6_1_eff_pos_controller L6_2_eff_pos_controller L6_3_eff_pos_controller"/>
+  
+  <!-- load urdf model into robot description -->
+  <arg name="model" default="$(find snake_monster)/urdf/my_snake_monster.xacro" />
+  <param name="robot_description" command="rosrun xacro xacro --inorder $(arg model)" />
+  <arg name="gui" default="true" />
+  <param name="use_gui" value="$(arg gui)"/>
+
+  <!-- convert joint states to TF transforms for rviz -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+    <remap from="/joint_states" to="/snake_monster/joint_states" />
+  </node>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find snake_monster)/urdf.rviz" />
+
+    <!-- <node name="control_messager" pkg="snake_monster_control" type="control_messager" /> -->
+
+	  
+</launch>
