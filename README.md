@@ -8,11 +8,14 @@ Special thanks to the [HEBI Robotics](http://hebirobotics.com/) team for providi
 ## Build and source the workspace
 
 Source ROS if this is not already handled:
+```
 $ source /opt/ros/kinetic/setup.bash
-
+```
 Move to the downloaded workspace, build, and source:
+```
 $ cd snake_ws
 $ catkin_make
 $ source devel/setup.bash
+```
 
 ## Example run commands
