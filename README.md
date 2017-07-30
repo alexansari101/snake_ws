@@ -33,7 +33,7 @@ $ cd snake_ws/src/snake_monster_control/scripts
 $ python walking_controller.py
 ```
 
-*If the commands are successful, walking_controller.py should send joint commands that cause the hexapod robot simulation in gazebo to start walking.  The python file publishes desired joint angles and ROS control is used to implement a PD controller to drive the dynmaic robot model in tracking these angles.*
+*If the commands are successful, walking_controller.py should send joint commands that cause the hexapod robot simulation in gazebo to start walking.  The python file publishes desired joint angles and ROS control is used to implement a PD controller to drive the dynamic robot model in tracking these angles.*
 
 ### SEA snake
 
@@ -48,4 +48,4 @@ $ cd snake_ws/src/snake_control/scripts
 $ python gaits.py
 ```
 
-*If the commands are successful, gaits.py should send joint commands that cause the snake robot simulation in gazebo to start sidewinding.  The python file publishes desired joint angles and ROS control is used to implement a PD controller to drive the dynmaic robot model in tracking these angles.*
+*If the commands are successful, gaits.py should send joint commands that cause the snake robot simulation in gazebo to start sidewinding.  The python file publishes desired joint angles and ROS control is used to implement a PD controller to drive the dynamic robot model in tracking these angles.*
