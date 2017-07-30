@@ -20,6 +20,15 @@ $ source devel/setup.bash
 
 ## Example run commands
 
+### SEA snake
+
+Launch the gazebo simulator, ROS control interfaces, and execute gait control script: 
+```
+$ roslaunch snake_control gazebo.launch gait:=true paused:=false
+```
+
+*If the command is successful, gaits.py should send joint commands that cause the snake robot simulation in gazebo to start sidewinding.  The python file publishes desired joint angles and ROS control is used to implement a PD controller to drive the dynamic robot model in tracking these angles.*
+
 ### SEA hexapod
 
 Launch the gazebo simulator and ROS control interfaces: 
@@ -34,18 +43,3 @@ $ python walking_controller.py
 ```
 
 *If the commands are successful, walking_controller.py should send joint commands that cause the hexapod robot simulation in gazebo to start walking.  The python file publishes desired joint angles and ROS control is used to implement a PD controller to drive the dynamic robot model in tracking these angles.*
-
-### SEA snake
-
-Launch the gazebo simulator and ROS control interfaces: 
-```
-$ roslaunch snake_control gazebo.launch
-```
-
-Open a seperate terminal and execute a control script:
-```
-$ cd snake_ws/src/snake_control/scripts
-$ python gaits.py
-```
-
-*If the commands are successful, gaits.py should send joint commands that cause the snake robot simulation in gazebo to start sidewinding.  The python file publishes desired joint angles and ROS control is used to implement a PD controller to drive the dynamic robot model in tracking these angles.*
