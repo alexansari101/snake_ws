@@ -56,4 +56,4 @@ The snake_control and snake_monster_control packages were originally developed a
 
 ## Contributing
 
-Please contribute to this open-source project!
+This project is intended to be a simple example and starting point for students to perform simulated control of the robots in the Biorobotics lab.  If you make changes/improvements, please consider contributing these back to this open-source project so that others may benefit!
