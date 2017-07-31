@@ -1,5 +1,5 @@
 # snake_ws
-ROS workspace with packages for simulated control of the CMU Biorobotics lab's SEA snake and SEA hexapod (aka snake monster). 
+ROS workspace with packages for simulated control of the CMU Biorobotics Lab's SEA snake and SEA hexapod (aka snake monster). 
 
 Tested with __ROS Kinetic__ and __Ubuntu 16.04__
 
@@ -49,3 +49,7 @@ $ python walking_controller.py
 ```
 
 *If the commands are successful, walking_controller.py should send joint commands that cause the hexapod robot simulation in gazebo to start walking.  The python file publishes desired joint angles and ROS control is used to implement a PD controller to drive the dynamic robot model in tracking these angles.*
+
+## Acknowledgements
+
+The snake_control and snake_monster control packages were developed by Alex Ansari while working in Prof. Howie Choset's Biorobotics Lab at Carnegie Mellon University. (The workspace uses model files from HEBI Robotics and redistributes the gazebo_ros_control package so the workspace is self-contained.)  You are free to use this code subject to the licensing agreements in each package.  If you do use these packages, please remember to cite and properly ackowledge source materials.
