@@ -18,7 +18,7 @@ $ catkin_make
 $ source devel/setup.bash
 ```
 
-## Example run commands
+## Run example controllers
 
 ### SEA snake
 
