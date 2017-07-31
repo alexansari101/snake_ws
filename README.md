@@ -52,4 +52,4 @@ $ python walking_controller.py
 
 ## Acknowledgements
 
-The snake_control and snake_monster_control packages were developed by Alex Ansari while working in Prof. Howie Choset's Biorobotics Lab at Carnegie Mellon University. (The workspace uses model files from HEBI Robotics and redistributes the gazebo_ros_control package so the workspace is self-contained.)  You are free to use this code subject to the licensing agreements in each package.  If you do use these packages, please remember to cite and properly ackowledge source materials.
+The snake_control and snake_monster_control packages were developed by Alex Ansari while working in Prof. Howie Choset's Biorobotics Lab at Carnegie Mellon University. (The workspace uses model files from HEBI Robotics and redistributes the gazebo_ros_control package so the workspace is self-contained.)  You are free to use this code subject to the licensing agreements in each package.  If you do use these packages, please cite and ackowledge source materials.
