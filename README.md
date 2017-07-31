@@ -18,7 +18,7 @@ $ catkin_make
 $ source devel/setup.bash
 ```
 
-## Run example controllers
+## Run example controllers in Gazebo
 
 ### SEA snake
 
